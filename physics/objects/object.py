@@ -6,7 +6,7 @@ import pygame as pg
 
 class Object:
     vectorMovement = pg.Vector2(0,0)
-    def __init__(self, surface: pg.Surface, pos: pg.Vector2, weight: float, color: pg.Color, phys: bool):
+    def __init__(self, surface: pg.Surface, pos: pg.Vector2, weight: float, color: pg.Color, phys: bool,vectorMovement: pg.Vector2):
         self.surface = surface
         self.pos = pos
         self.x = pos.x
@@ -14,6 +14,7 @@ class Object:
         self.phys = phys
         self.weight = weight
         self.color = color
+        self.vectorMovement = vectorMovement
 
     def calcForces(self, dt) -> None:
         self.vectorMovement.y -= g*dt

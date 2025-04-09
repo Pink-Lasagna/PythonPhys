@@ -9,8 +9,8 @@ def main():
     clock = pg.time.Clock()
     
 
-    c1 = ph.Circle(screen, pg.Vector2(640,360),2,"red",10, True)
-    r1 = ph.Rectangle(screen, pg.Vector2(100,600), "black",1000,100,10,False)
+    c1 = ph.Circle(screen, pg.Vector2(640,360),2,"red", 10, True, pg.Vector2(1,0))
+    r1 = ph.Rectangle(screen, pg.Vector2(100,600), "black",1000,100,10,False, pg.Vector2(0,0))
     phys = ph.ObjectScene((1280,720), dt,c1,r1)
 
     while True:

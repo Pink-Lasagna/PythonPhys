@@ -1,11 +1,10 @@
-from ..engine import g, scale
+from ..engine import g, scale, screen
 
 
 import pygame as pg
 
 
 class Object:
-    velocity = 0
     inAir = True
     vectorMovement = pg.Vector2(0,0)
     def __init__(self, surface: pg.Surface, pos: pg.Vector2, weight: float, color: pg.Color, phys: bool):
@@ -18,11 +17,12 @@ class Object:
         self.color = color
 
     def move(self, dt) -> None:
-        self.pos.y += (((g*dt**2)/2)+self.velocity*dt)*scale
-        print(self.pos.y)
-        self.velocity += g*dt
+        if self.inAir: self.vectorMovement.y -= g*dt
+        self.applyForces()
 
-    def applyForces(self, vector: pg.Vector2):
+    def applyForces(self):
+        self.pos.x += self.vectorMovement.x
+        self.pos.y -= self.vectorMovement.y
 
     def checkCollision(self, obj) -> bool:
         return False

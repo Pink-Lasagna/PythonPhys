@@ -1,6 +1,7 @@
 from .object import Object
-
-
+from .rectangle import Rectangle
+from .. import utils
+import math
 import pygame as pg
 
 
@@ -14,3 +15,10 @@ class Circle(Object):
 
     def draw(self):
         pg.draw.circle(self.surface,self.color,self.pos,self.r)
+
+    def checkCollision(self, obj: Object):
+        if type(obj) == Rectangle:
+            clPoint = utils.clampPointInRect(self.pos,obj)
+            if (clPoint.x-self.pos.x)**2 + (clPoint.y-self.pos.y)**2 < self.r or self.pos == clPoint:
+                return True
+        return False

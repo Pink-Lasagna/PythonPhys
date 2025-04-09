@@ -8,6 +8,7 @@ def main():
     screen = pg.display.set_mode((1280,720))
     clock = pg.time.Clock()
     
+
     c1 = ph.Circle(screen, pg.Vector2(640,360),2,"red",10, True)
     r1 = ph.Rectangle(screen, pg.Vector2(100,600), "black",1000,100,10,False)
     phys = ph.ObjectScene((1280,720), dt,c1,r1)
@@ -19,6 +20,7 @@ def main():
         
         screen.fill("white")
         
+
         phys.updateTime(dt)
         phys.calcObjectScene()
 
@@ -26,9 +28,10 @@ def main():
         pg.display.flip()
 
         clock.tick(60)
-    
+        print(clock.get_fps())
         dt = clock.get_time()/1000
         t+=dt
+
 
 if __name__=="__main__":
     main()

@@ -27,9 +27,7 @@ def main():
         
         pg.display.flip()
 
-        clock.tick(60)
-        print(clock.get_fps())
-        dt = clock.get_time()/1000
+        dt = clock.tick(75)/1000
         t+=dt
 
 

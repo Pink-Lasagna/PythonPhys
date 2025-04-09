@@ -10,8 +10,8 @@ class Circle(Object):
         super().__init__(surface, pos, weight, color, phys)
         self.r = r
 
-    def move(self, dt):
-        super().move(dt)
+    def calcForces(self, dt):
+        super().calcForces(dt)
 
     def draw(self):
         pg.draw.circle(self.surface,self.color,self.pos,self.r)
@@ -20,5 +20,9 @@ class Circle(Object):
         if type(obj) == Rectangle:
             clPoint = utils.clampPointInRect(self.pos,obj)
             if (clPoint.x-self.pos.x)**2 + (clPoint.y-self.pos.y)**2 < self.r or self.pos == clPoint:
+                print("lol", self.vectorMovement)
                 return True
         return False
+    
+    def onCollision(self):
+        self.vectorMovement = pg.Vector2(self.vectorMovement.x, -self.vectorMovement.y)

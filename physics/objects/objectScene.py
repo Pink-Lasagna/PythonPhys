@@ -12,10 +12,13 @@ class ObjectScene:
   
     def calcObjectScene(self):
         for i in self.obj:
-            for j in self.obj:
-                if i==j:
-                    continue
-                if i.checkCollision(j):
-                    print("lol")
-            if i.phys==True: i.move(self.dt)
+            if i.phys==True: 
+                for j in self.obj:
+                    if i==j:
+                        continue
+                    if i.checkCollision(j):
+                        i.onCollision()
+                    else:
+                        i.calcForces(self.dt)
+                    i.applyForces()
             i.draw()
